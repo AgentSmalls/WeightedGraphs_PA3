@@ -10,6 +10,7 @@ package weighted_graphs_pa3;
  * @author timbo
  */
 public class WeightedGraph {
+    private Vertex first;
     
     
     public WeightedGraph(){

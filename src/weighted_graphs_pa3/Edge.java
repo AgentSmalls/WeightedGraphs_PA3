@@ -10,6 +10,11 @@ package weighted_graphs_pa3;
  * @author timbo
  */
 public class Edge {
-    private int weight;
+    public int weight;
+    private Vertex v;
     
+    public Edge(int w, Vertex v){
+        weight = w;
+        this.v = v;
+    }
 }

@@ -79,6 +79,7 @@ public class Heap {
     }*/
     
     public void insertEdge(Edge e){
+        
         //  Set an emptyIndex which will find the first index that has not been used yet.
         int emptyIndex = 0;
         while(edgeHeap[emptyIndex] != null){

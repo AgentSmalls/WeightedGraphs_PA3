@@ -58,8 +58,15 @@ public class Driver {
         
         printMatrix(matrix);
         
+        WeightedGraph graph = new WeightedGraph(matrix);
         
-        /*  Test that heapEdges are working
+        graph.printMatrix();
+        
+        Heap h = graph.depthSearch();
+        h.printEdges();
+        
+        
+        /*/  Test that heapEdges are working
         Vertex v = new Vertex();
         Edge e = new Edge(14, v);
         Heap h = new Heap(e);

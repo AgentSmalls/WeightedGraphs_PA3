@@ -38,7 +38,8 @@ public class WeightedGraph {
         }
     }
     
-    private Heap depthSearch(){
+    // depthSearch private becasue it leaves all vertices as visited true.
+    public Heap depthSearch(){
         Vertex first = vertices[0];
         Edge[] vertexEdges = new Edge[5];
         Stack<Vertex> s = new Stack();
@@ -55,29 +56,40 @@ public class WeightedGraph {
                 s.add(next);
                 next.visited = true;
                 // Null out vertexEdges for reuse
-                vertexEdges = null;
-                
+                //vertexEdges = null;
+                // ArrayList.toArray(T[] a) cannot accept an empty array. So insert
+                // something random into vertexEdges.
+                //vertexEdges[0] = new Edge(1, first);
                 vertexEdges = next.edges.toArray(vertexEdges);
+                
                 edges = insertEdges(edges, vertexEdges, 0);
             }else{
                 Vertex top = s.pop();
-                vertexEdges = null;
+            //    vertexEdges = null;
                 vertexEdges = top.edges.toArray(vertexEdges);
             }
         }
         
+        // Put visited on each vertex back to false!
+        for(int i = 0; i < vertices.length; i++){
+            vertices[i].visited = false;
+        }
         return edges;
     }
     
     private Vertex searchForVertex(Edge[] e){
+        
         int i = 0;
         boolean found = false;
         Vertex v = null;
-        while(e[i].getVertex() != null){
-            if(e[i].getVertex().visited == false){
-                v = e[i].getVertex();
-                found = true;
-                break;
+        if(e[0] != null){
+            while(e[i] != null){
+                if(e[i].getVertex().visited == false){
+                    v = e[i].getVertex();
+                    found = true;
+                    break;
+                }
+                i++;
             }
         }
         if(found){
@@ -91,10 +103,11 @@ public class WeightedGraph {
     private Heap insertEdges(Heap h, Edge[] e, int i){
         while(e[i] != null){
             h.insertEdge(e[i]);
+            i++;
         }
         return h;
     }
-    
+
     
     public MST Prim(){
         
@@ -111,10 +124,10 @@ public class WeightedGraph {
         return null;
     }
     
-    public void printMatrix(int[][] m){
-        for(int i = 0; i < m.length; i++){
-            for(int j = 0; j < m.length; j++){
-                System.out.print(m[i][j] + " ");
+    public void printMatrix(){
+        for(int i = 0; i < adjacencyMatrix.length; i++){
+            for(int j = 0; j < adjacencyMatrix.length; j++){
+                System.out.print(adjacencyMatrix[i][j] + " ");
             }
             System.out.println();
         }

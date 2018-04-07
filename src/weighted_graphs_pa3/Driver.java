@@ -5,6 +5,13 @@
  */
 package weighted_graphs_pa3;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 /**
  *
  * @author timbo
@@ -15,6 +22,29 @@ public class Driver {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        String[] weights = new String[30];
+        String[] vertices = new String[30];
+        
+        Charset charset = Charset.forName("US-ASCII");
+        Path inputFile = FileSystems.getDefault().getPath("input","matrix.csv");
+        
+        int index = 0;
+        
+        
+        //temporarily reading things into seperate arrays for testing
+        //probably can do with one 2d array?
+        try (BufferedReader reader = Files.newBufferedReader(inputFile, charset)) {
+            String line = null;
+            while((line = reader.readLine()) != null){
+                String[] matrixValues = line.split(",");
+                vertices[index] = matrixValues[0];
+                weights[index] = matrixValues[1];
+                index++;
+            }
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
         
         /*  Test that heapEdges are working
         Vertex v = new Vertex();

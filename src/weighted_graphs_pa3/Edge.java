@@ -17,4 +17,8 @@ public class Edge {
         weight = w;
         this.v = v;
     }
+    
+    public Vertex getVertex(){
+        return v;
+    }
 }

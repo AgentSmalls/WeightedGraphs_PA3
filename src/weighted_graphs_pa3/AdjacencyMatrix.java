@@ -10,8 +10,16 @@ package weighted_graphs_pa3;
  * @author timbo
  */
 public class AdjacencyMatrix {
+    public int[][] matrix;
     
     
+    public AdjacencyMatrix(int dim){
+        matrix = new int[dim][dim];
+    }
+    
+    public void addValue(int x, int y){
+        
+    }
     
     public AdjacencyMatrix FloydWarshall(){
         

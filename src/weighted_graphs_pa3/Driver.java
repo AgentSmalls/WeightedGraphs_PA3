@@ -58,6 +58,7 @@ public class Driver {
         
         printMatrix(matrix);
         
+        
         /*  Test that heapEdges are working
         Vertex v = new Vertex();
         Edge e = new Edge(14, v);
@@ -87,13 +88,14 @@ public class Driver {
         */        
     }
     
-    public  static void printMatrix(int[][] m){
+    public static void printMatrix(int[][] m){
         for(int i = 0; i < m.length; i++){
             for(int j = 0; j < m.length; j++){
                 System.out.print(m[i][j] + " ");
             }
             System.out.println();
         }
+        System.out.println();
     }
     
 }

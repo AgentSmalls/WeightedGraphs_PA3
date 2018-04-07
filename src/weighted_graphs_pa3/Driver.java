@@ -23,8 +23,11 @@ public class Driver {
      */
     public static void main(String[] args) {
         
-        String[] weights = new String[30];
-        String[] vertices = new String[30];
+        /*int[] weights = new int[30];
+        Integer[] values = new Integer[30];
+        String[] vertices = new String[30];*/
+        
+        int[][] matrix = null;
         
         Charset charset = Charset.forName("US-ASCII");
         Path inputFile = FileSystems.getDefault().getPath("input","matrix.csv");
@@ -32,19 +35,28 @@ public class Driver {
         int index = 0;
         
         
+        
         //temporarily reading things into seperate arrays for testing
         //probably can do with one 2d array?
         try (BufferedReader reader = Files.newBufferedReader(inputFile, charset)) {
             String line = null;
-            while((line = reader.readLine()) != null){
+            line = reader.readLine();
+            int dim = (line.length()+1)/2;
+            matrix = new int[dim][dim];
+            //System.out.println(dim);
+            while(index < dim){
+                line = reader.readLine();
                 String[] matrixValues = line.split(",");
-                vertices[index] = matrixValues[0];
-                weights[index] = matrixValues[1];
+                for(int i = 0; i < dim; i++){
+                    matrix[index][i] = Integer.parseInt(matrixValues[i]);
+                }
                 index++;
             }
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         }
+        
+        printMatrix(matrix);
         
         /*  Test that heapEdges are working
         Vertex v = new Vertex();
@@ -73,6 +85,15 @@ public class Driver {
         System.out.println(x.getName());
         System.out.println(y.getName());
         */        
+    }
+    
+    public  static void printMatrix(int[][] m){
+        for(int i = 0; i < m.length; i++){
+            for(int j = 0; j < m.length; j++){
+                System.out.print(m[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
     
 }

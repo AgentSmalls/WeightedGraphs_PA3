@@ -17,7 +17,8 @@ import java.nio.file.Path;
  * @author timbo
  */
 public class Driver {
-
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -27,18 +28,80 @@ public class Driver {
         Integer[] values = new Integer[30];
         String[] vertices = new String[30];*/
         
-        int[][] matrix = null;
-        
         Charset charset = Charset.forName("US-ASCII");
         Path inputFile = FileSystems.getDefault().getPath("input","matrix.csv");
         
-        int index = 0;
-        
-        
+        int[][] directed = null;
+        int[][] undirected = null;
         
         //temporarily reading things into seperate arrays for testing
         //probably can do with one 2d array?
         try (BufferedReader reader = Files.newBufferedReader(inputFile, charset)) {
+            directed = getMatrix(reader);
+            undirected = getMatrix(reader);
+            
+            
+        } catch (IOException x) {
+            System.err.format("IOException: %s%n", x);
+        }
+        
+//        printMatrix(directed);
+//        printMatrix(undirected);
+        
+        WeightedGraph graph = new WeightedGraph(directed);
+        WeightedGraph fWarshall = new WeightedGraph(undirected);
+        
+        System.out.println("Directed weighted Graph");
+        
+        graph.printMatrix();
+        MST mst = new MST(graph);
+        mst.Kruskal(graph);
+        
+    //    Heap h = graph.depthSearch();
+        
+        
+        //h.printEdges();
+        
+        
+        /*/  Test that heapEdges are working
+        Vertex v = new Vertex();
+        Vertex w = new Vertex();
+        Edge e = new Edge(14, v, w);
+        Heap h = new Heap(e);
+        h.insertEdge(new Edge(11, v, w));
+        h.insertEdge(new Edge(12, v, w));
+        h.insertEdge(new Edge(8, v, w));
+        h.insertEdge(new Edge(13, v, w));
+        h.printEdges();
+        h.removeEdge();
+        h.insertEdge(new Edge(6, v, w));
+        h.insertEdge(new Edge(12, v, w));
+        h.printEdges();
+        h.removeEdge();
+        h.removeEdge();
+        h.removeEdge();
+        h.printEdges();
+        h.removeEdge();
+        h.printEdges();
+        //*/
+        
+        /*  Test that Vertex numbering is working
+        Vertex v = new Vertex();
+        Vertex w = new Vertex();
+        Vertex x = new Vertex();
+        Vertex y = new Vertex();
+        System.out.println(v.getName());
+        System.out.println(w.getName());
+        System.out.println(x.getName());
+        System.out.println(y.getName());
+        */        
+    }
+    
+    public static int[][] getMatrix(BufferedReader reader){
+        int[][] matrix = null;
+        int index = 0;       
+        
+        try{
             String line = null;
             line = reader.readLine();
             int dim = (line.length()+1)/2;
@@ -51,48 +114,12 @@ public class Driver {
                     matrix[index][i] = Integer.parseInt(matrixValues[i]);
                 }
                 index++;
-            }
+            } 
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         }
-        
-        printMatrix(matrix);
-        
-        WeightedGraph graph = new WeightedGraph(matrix);
-        
-        graph.printMatrix();
-        
-        Heap h = graph.depthSearch();
-        h.printEdges();
-        
-        
-        /*/  Test that heapEdges are working
-        Vertex v = new Vertex();
-        Edge e = new Edge(14, v);
-        Heap h = new Heap(e);
-        h.insertEdge(new Edge(11, v));
-        h.insertEdge(new Edge(12, v));
-        h.insertEdge(new Edge(8, v));
-        h.insertEdge(new Edge(13, v));
-        h.printEdges();
-        h.removeEdge();
-        h.insertEdge(new Edge(6, v));
-        h.insertEdge(new Edge(12, v));
-        h.printEdges();
-        h.removeEdge();
-        h.printEdges();
-        */
-        
-        /*  Test that Vertex numbering is working
-        Vertex v = new Vertex();
-        Vertex w = new Vertex();
-        Vertex x = new Vertex();
-        Vertex y = new Vertex();
-        System.out.println(v.getName());
-        System.out.println(w.getName());
-        System.out.println(x.getName());
-        System.out.println(y.getName());
-        */        
+           
+        return matrix;
     }
     
     public static void printMatrix(int[][] m){

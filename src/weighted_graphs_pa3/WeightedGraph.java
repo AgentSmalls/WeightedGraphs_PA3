@@ -28,9 +28,10 @@ public class WeightedGraph {
         for(int i = 0; i < matrix.length; i++){
             for(int j = 0; j < matrix.length; j++){
                 if(matrix[i][j] > 0){
-                    // An edge's vertex is the vertex it is pointing to.
-                    Edge e = new Edge(matrix[i][j], vertices[j]);
-                    edges[edgeCounter] = new Edge(matrix[i][j], vertices[j]);
+                    // A new edge takes in the vertex it is pointing to first, and then
+                    // the vertex that is being pointed from.
+                    Edge e = new Edge(matrix[i][j], vertices[j], vertices[i]);
+                    edges[edgeCounter] = new Edge(matrix[i][j], vertices[j], vertices[i]);
                     vertices[i].addEdge(edges[edgeCounter]);
                     edgeCounter++;
                 }
@@ -38,7 +39,6 @@ public class WeightedGraph {
         }
     }
     
-    // depthSearch private becasue it leaves all vertices as visited true.
     public Heap depthSearch(){
         Vertex first = vertices[0];
         Edge[] vertexEdges = new Edge[5];
@@ -84,8 +84,8 @@ public class WeightedGraph {
         Vertex v = null;
         if(e[0] != null){
             while(e[i] != null){
-                if(e[i].getVertex().visited == false){
-                    v = e[i].getVertex();
+                if(e[i].getTo().visited == false){
+                    v = e[i].getTo();
                     found = true;
                     break;
                 }
@@ -109,16 +109,6 @@ public class WeightedGraph {
     }
 
     
-    public MST Prim(){
-        
-        return null;
-    }
-    
-    public MST Kruskal(){
-        
-        return null;
-    }
-    
     public int[][] FloydWarshall(int[][] matrix, char[] header){
         
         return null;
@@ -132,6 +122,14 @@ public class WeightedGraph {
             System.out.println();
         }
         System.out.println();
+    }
+    
+    public Vertex[] getVertices(){
+        return vertices;
+    }
+    
+    public Edge[] getEdges(){
+        return edges;
     }
     
 }

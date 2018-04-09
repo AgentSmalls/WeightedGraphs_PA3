@@ -107,9 +107,7 @@ public class WeightedGraph {
         }
         return h;
     }
-<<<<<<< HEAD
     
-    // moved over to MST class
     public MST Prim(){
         
         return null;
@@ -119,9 +117,6 @@ public class WeightedGraph {
         
         return null;
     }
-=======
-
->>>>>>> 3f862a09c8fa06de717348930829a9aaa7eb7f27
     
     public int[][] FloydWarshall(int[][] matrix, char[] header){
         

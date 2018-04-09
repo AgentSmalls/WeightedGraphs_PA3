@@ -59,14 +59,7 @@ public class Driver {
         
     //    Heap h = graph.depthSearch();
         
-        
-<<<<<<< HEAD
-        MST prim = new MST();
-        prim.Prim(matrix);
-        
-=======
         //h.printEdges();
->>>>>>> 3f862a09c8fa06de717348930829a9aaa7eb7f27
         
         
         /*/  Test that heapEdges are working

@@ -58,6 +58,9 @@ public class Driver {
         
         printMatrix(matrix);
         
+        MST prim = new MST();
+        prim.Prim(matrix);
+        
         
         /*  Test that heapEdges are working
         Vertex v = new Vertex();

@@ -95,7 +95,7 @@ public class WeightedGraph {
         return h;
     }
     
-    
+    // moved over to MST class
     public MST Prim(){
         
         return null;

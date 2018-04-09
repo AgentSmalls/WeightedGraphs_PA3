@@ -11,9 +11,9 @@
 package weighted_graphs_pa3;
 
 public class Heap {
-    private int[] heap;
-    private Edge[] edgeHeap;
-    private Vertex[] vertexHeap;
+    private int[] heap = new int[1];
+    private Edge[] edgeHeap = new Edge[1];
+//    private Vertex[] vertexHeap;
     
     
     public Heap(){
@@ -79,6 +79,7 @@ public class Heap {
     }*/
     
     public void insertEdge(Edge e){
+        
         //  Set an emptyIndex which will find the first index that has not been used yet.
         int emptyIndex = 0;
         while(edgeHeap[emptyIndex] != null){
@@ -122,6 +123,7 @@ public class Heap {
         System.out.println();
     }
     
+    /* May be broken. Needs to always choose the child that is the lowest...*/ /*
     public int remove(){
         //  Remember value that is being removed for later reference.
         int returnVal = heap[0];
@@ -171,7 +173,7 @@ public class Heap {
         }
         //  Returns the value that was removed.
         return returnVal;
-    }
+    } */
     
     public Edge removeEdge(){
         //  Remember value that is being removed for later reference.
@@ -193,53 +195,64 @@ public class Heap {
         boolean success = false;
         //  i must be less than the lastIndex.
         while(success == false && i < lastIndex){
-            //  Check parent with the child on the left first as long as child != null
-            if(edgeHeap[(2*i)+1] != null){
+            //  If both children are not null, check both of their values. Choose to
+            //  go to the smallest.
+            if(edgeHeap[(2*i)+1] != null && edgeHeap[(2*i)+2] != null){
+                // If left child value is less than or equal to right child value, 
+                // go left only if left child is less than parent 
+                if(edgeHeap[(2*i)+1].weight <= edgeHeap[(2*i)+2].weight){
+                    // Switch if parent is greater than left child
+                    if(edgeHeap[i].weight > edgeHeap[(2*i)+1].weight){
+                        Edge temp = edgeHeap[i];
+                        edgeHeap[i] = edgeHeap[(2*i)+1];
+                        edgeHeap[(2*i)+1] = temp;
+                        // Increment i
+                        i = (2*i)+1;
+                    // If parent is less than or equal to left child, then done sorting    
+                    }else{
+                        success = true;
+                    } // End if else
+                // Otherwise, right child is less than left child    
+                }else{
+                    // Switch if parent is greater than right child
+                    if(edgeHeap[i].weight > edgeHeap[(2*i)+2].weight){
+                        Edge temp = edgeHeap[i];
+                        edgeHeap[i] = edgeHeap[(2*i)+2];
+                        edgeHeap[(2*i)+2] = temp;
+                        // Increment i
+                        i = (2*i)+2;
+                    // If parent is less than or equal to right child, then done sorting    
+                    }else{
+                        success = true;
+                    } // End if else
+                } // End if(if else) else (if else)
+            // Otherwise, check if only left child is not null, because right child is null    
+            }else if(edgeHeap[(2*i)+1] != null){
+                // Check if left child is less than parent. If so, switch.
                 if(edgeHeap[i].weight > edgeHeap[(2*i)+1].weight){
-                    //  Switch parent with child
                     Edge temp = edgeHeap[i];
                     edgeHeap[i] = edgeHeap[(2*i)+1];
                     edgeHeap[(2*i)+1] = temp;
-                
-                    //  Check if parent is now greater than child on the right and switch
-                    if(edgeHeap[(2*i)+2] != null){
-                        if(edgeHeap[i].weight > edgeHeap[(2*i)+2].weight){    
-                    
-                            Edge temp2 = edgeHeap[i];
-                            edgeHeap[i] = edgeHeap[(2*i)+2];
-                            edgeHeap[(2*i)+2] = temp2;
-                        }
-                    }
-                    
-                    //  Now check for success, aka parent is less than children! 
-                    if(edgeHeap[i].weight <= edgeHeap[(2*i)+1].weight 
-                            && edgeHeap[i].weight <= edgeHeap[(2*i)+2].weight){
-                        success = true;
-                    }
-                  
-                    //  Increment i;
-                    i = (2*i)+1;
-                }
-            //  Check parent with the child on the right
-            }else if(edgeHeap[(2*i)+2] != null){
-                if(edgeHeap[i].weight > edgeHeap[(2*i)+2].weight){
-                    Edge temp = edgeHeap[i];
-                    edgeHeap[i] = edgeHeap[(2*i)+2];
-                    edgeHeap[(2*i)+2] = temp;
-                    
-                    // Check for success
-                    if(edgeHeap[i].weight <= edgeHeap[(2*i)+1].weight 
-                            && edgeHeap[i].weight <= edgeHeap[(2*i)+2].weight){
-                        success = true;
-                    }
-                    
                     // Increment i
-                    i = (2*i)+2;
-                }
-            }
-        }
-        //  Returns the value that was removed.
+                    i = (2*i)+1;
+                // If parent is less than or equal to left child, then done sorting    
+                }else{
+                    success = true;
+                } // End if else
+            // If both children are null, then obviously we are done sorting
+            }else{
+                success = true;
+            } // End of if(children != null)
+        }// End of while
+        
         return returnVal;
+    } // End of method removeEdge()
+    
+    public boolean isEmpty(){
+        if(heap[0] == 0 && edgeHeap[0] == null){
+            return true;
+        }
+        return false;
     }
     
 }

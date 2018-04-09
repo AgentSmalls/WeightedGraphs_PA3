@@ -42,6 +42,6 @@ public class Vertex {
     }
     
     public void addEdge(Edge e){
-        
+        edges.add(e);
     }
 }

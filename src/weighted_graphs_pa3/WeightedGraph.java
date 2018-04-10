@@ -12,26 +12,26 @@ import java.util.*;
 public class WeightedGraph {
     private Vertex[] vertices;
     private Edge[] edges;
-    int[][] adjacencyMatrix;
+    AdjacencyMatrix adjacencyMatrix;
     
-    public WeightedGraph(int[][] matrix){
-        adjacencyMatrix = matrix;
+    public WeightedGraph(AdjacencyMatrix m){
+        adjacencyMatrix = m;
         // matrix must be a square!!!
-        vertices = new Vertex[matrix.length];
+        vertices = new Vertex[m.matrix.length];
         // Max edges is (v^2)-v where v is number of vertices.
-        edges = new Edge[(matrix.length * matrix.length) - matrix.length];
+        edges = new Edge[(m.matrix.length * m.matrix.length) - m.matrix.length];
         
         for(int i = 0; i < vertices.length; i++){
             vertices[i] = new Vertex();
         }
         int edgeCounter = 0;
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix.length; j++){
-                if(matrix[i][j] > 0){
+        for(int i = 0; i < m.matrix.length; i++){
+            for(int j = 0; j < m.matrix.length; j++){
+                if(m.matrix[i][j] > 0){
                     // A new edge takes in the vertex it is pointing to first, and then
                     // the vertex that is being pointed from.
-                    Edge e = new Edge(matrix[i][j], vertices[j], vertices[i]);
-                    edges[edgeCounter] = new Edge(matrix[i][j], vertices[j], vertices[i]);
+                    Edge e = new Edge(m.matrix[i][j], vertices[j], vertices[i]);
+                    edges[edgeCounter] = new Edge(m.matrix[i][j], vertices[j], vertices[i]);
                     vertices[i].addEdge(edges[edgeCounter]);
                     edgeCounter++;
                 }
@@ -106,22 +106,6 @@ public class WeightedGraph {
             i++;
         }
         return h;
-    }
-
-    
-    public int[][] FloydWarshall(int[][] matrix, char[] header){
-        
-        return null;
-    }
-    
-    public void printMatrix(){
-        for(int i = 0; i < adjacencyMatrix.length; i++){
-            for(int j = 0; j < adjacencyMatrix.length; j++){
-                System.out.print(adjacencyMatrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
     }
     
     public Vertex[] getVertices(){

@@ -54,8 +54,11 @@ public class Driver {
         System.out.println("Directed weighted Graph");
         
         graph.printMatrix();
-        MST mst = new MST(graph);
-        mst.Kruskal(graph);
+        MST k = new MST(graph);
+
+        k.kruskal(graph);
+        System.out.print("Kruskal's algorithm tree: ");
+        k.printTree();
         
     //    Heap h = graph.depthSearch();
         

@@ -1,4 +1,12 @@
+//<<<<<<< HEAD
 
+//=======
+/*
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: defines the connection between vertices and that connections weight
+ */
+//>>>>>>> ff37456a4aaa3611e419c58788fc4311d666f09e
 package weighted_graphs_pa3;
 
 public class Edge {

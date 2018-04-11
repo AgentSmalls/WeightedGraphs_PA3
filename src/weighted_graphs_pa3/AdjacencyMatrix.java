@@ -1,4 +1,13 @@
+//<<<<<<< HEAD
 
+//=======
+/*
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: creates the adjacency matrix, prints the matrix and gets the length of the shortest path
+    between all pairs of vertices
+ */
+//>>>>>>> ff37456a4aaa3611e419c58788fc4311d666f09e
 package weighted_graphs_pa3;
 
 

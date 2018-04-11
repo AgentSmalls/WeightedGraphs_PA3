@@ -1,4 +1,12 @@
+//<<<<<<< HEAD
 
+//=======
+/*
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: creates the Minimum Spanning Trees from prim and kruskal algorithms
+ */
+//>>>>>>> ff37456a4aaa3611e419c58788fc4311d666f09e
 package weighted_graphs_pa3;
 
 
@@ -12,9 +20,34 @@ public class MST {
         edges = new Edge[vertices.length - 1];
     }
         
-    public MST prim(){
+    
+    public MST Prim(WeightedGraph graph, int s){
+        MST m = new MST(graph);
+        Heap q = graph.depthSearch();
         
-        return null;
+        Edge[] v = graph.getEdges();
+        Edge[] p;
+        
+        //for each member of q set the priority to "infinity"
+        for(Edge i : v){
+            //set the priority to "infinity"
+            //v[i] = ; //?????
+        }
+        //set the starting vertex 's' priority to 0
+        //v[s] = null;
+        //parent of s should be null
+        
+        
+        while(!q.isEmpty()){
+            //get miniumum for q as u
+            //Vertex u = ;
+            //for each adjacent vertex v to u
+                //if v is in q and weight of (u,v) < priority of v then
+                //the parent of v is set to be u
+                //the priority of v is the weight of (u,v)
+        }
+        
+        return m;
     }
     
     public MST kruskal(WeightedGraph graph){
@@ -54,7 +87,4 @@ public class MST {
         }
         System.out.println();
     }
-    
-    
-    
 }

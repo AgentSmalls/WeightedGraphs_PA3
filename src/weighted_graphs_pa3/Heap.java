@@ -1,4 +1,8 @@
-
+/*
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: Can create a heap of ints or a heap of Edges based on weight. 
+ */
 package weighted_graphs_pa3;
 
 public class Heap {

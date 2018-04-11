@@ -28,4 +28,14 @@ public class Edge {
         Vertex[] v = new Vertex[] {to, from};
         return v;
     }
+    
+    public void print(){
+        if(to.getName() <= from.getName()){
+            System.out.print(to.getName());
+            System.out.print(from.getName() + " ");
+        }else{
+            System.out.print(from.getName());
+            System.out.print(to.getName() + " ");
+        }
+    }
 }

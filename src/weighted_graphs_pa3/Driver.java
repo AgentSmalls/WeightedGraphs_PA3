@@ -31,8 +31,8 @@ public class Driver {
         Charset charset = Charset.forName("US-ASCII");
         Path inputFile = FileSystems.getDefault().getPath("input","matrix.csv");
         
-        int[][] directed = null;
-        int[][] undirected = null;
+        AdjacencyMatrix directed = null;
+        AdjacencyMatrix undirected = null;
         
         //temporarily reading things into seperate arrays for testing
         //probably can do with one 2d array?
@@ -53,9 +53,16 @@ public class Driver {
         
         System.out.println("Directed weighted Graph");
         
-        graph.printMatrix();
-        MST mst = new MST(graph);
-        mst.Kruskal(graph);
+        directed.printMatrix();
+        MST k = new MST(graph);
+
+        k.kruskal(graph);
+        System.out.print("Kruskal's algorithm tree: ");
+        k.printTree();
+        
+        
+        // Do Floyd Warshall on undirected graph!
+        undirected.FloydWarshall();
         
     //    Heap h = graph.depthSearch();
         
@@ -96,17 +103,25 @@ public class Driver {
         */        
     }
     
-    public static int[][] getMatrix(BufferedReader reader){
+    public static AdjacencyMatrix getMatrix(BufferedReader reader){
         int[][] matrix = null;
+        char[] header = null;
         int index = 0;       
         
         try{
             String line = null;
+            String[] headerChars = null;
             line = reader.readLine();
+            headerChars = line.split(",");
+            
             int dim = (line.length()+1)/2;
             matrix = new int[dim][dim];
-            //System.out.println(dim);
+            header = new char[dim];
+
             while(index < dim){
+                // Convert headerChars into header 
+                header[index] = headerChars[index].charAt(0);
+                
                 line = reader.readLine();
                 String[] matrixValues = line.split(",");
                 for(int i = 0; i < dim; i++){
@@ -118,9 +133,9 @@ public class Driver {
             System.err.format("IOException: %s%n", x);
         }
            
-        return matrix;
+        return new AdjacencyMatrix(header, matrix);
     }
-    
+/*    
     public static void printMatrix(int[][] m){
         for(int i = 0; i < m.length; i++){
             for(int j = 0; j < m.length; j++){
@@ -130,5 +145,5 @@ public class Driver {
         }
         System.out.println();
     }
-    
+*/    
 }

@@ -1,25 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package weighted_graphs_pa3;
 
-/**
- *
- * @author timbo
- */
+
 public class MST {
     private Vertex[] vertices;
     private Edge[] edges;
     
+    // The number of edges is always one less than number of vertices.
     public MST(WeightedGraph graph){
         vertices = graph.getVertices();
         edges = new Edge[vertices.length - 1];
     }
-    
-    
-    
+        
     public MST prim(){
         
         return null;
@@ -53,6 +45,7 @@ public class MST {
         return this;
     }
     
+    /* Prints the edges in a tree on one line... */
     public void printTree(){
         for(int i = 0; i < edges.length; i++){
             if(edges[i] != null){

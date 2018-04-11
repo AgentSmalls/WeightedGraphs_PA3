@@ -1,13 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author g89h939
- */
 package weighted_graphs_pa3;
 
 public class Heap {
@@ -25,7 +16,8 @@ public class Heap {
         edgeHeap = new Edge[50];
         insertEdge(e);
     }
-    
+
+    /* Used exclusively for int heaps */
     public void insert(int inNum){
         //  Set an emptyIndex which will find the first index that has not been used yet.
         int emptyIndex = 0;
@@ -52,32 +44,7 @@ public class Heap {
         }
     }
     
-/*    public void insert(Vertex v){
-        //  Set an emptyIndex which will find the first index that has not been used yet.
-        int emptyIndex = 0;
-        while(vertexHeap[emptyIndex] != null){
-            emptyIndex++;
-        }
-        //  Set inNum to the first index that has not been used.
-        vertexHeap[emptyIndex] = v;
-        
-        boolean finished = false;
-        
-        while(emptyIndex > 0 && finished == false){
-            //  Campares inNum to parent. If parent is greater than inNum, switch.
-            //  Then set emptyIndex to parent index.
-            if(vertexHeap[emptyIndex].weight < vertexHeap[(emptyIndex - 1)/2].weight){
-                Vertex temp = vertexHeap[emptyIndex];
-                vertexHeap[emptyIndex] = vertexHeap[(emptyIndex - 1)/2];
-                vertexHeap[(emptyIndex - 1)/2] = temp;
-                emptyIndex = (emptyIndex-1)/2;
-            //  Finished is true if inNum is greater than parent.
-            }else{
-                finished = true;
-            }
-        }
-    }*/
-    
+    /* Used exclusively for edges. Inserts an edge in order of smallest weight. */
     public void insertEdge(Edge e){
         
         //  Set an emptyIndex which will find the first index that has not been used yet.
@@ -102,7 +69,7 @@ public class Heap {
             }else{
                 finished = true;
             }
-        }
+        } // End while
     }
     
     public void print()
@@ -175,6 +142,7 @@ public class Heap {
         return returnVal;
     } */
     
+    /* Removes an edge from the heap and returns the edge that was deleted to the caller */
     public Edge removeEdge(){
         //  Remember value that is being removed for later reference.
         Edge returnVal = edgeHeap[0];

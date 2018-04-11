@@ -26,21 +26,7 @@ public class Vertex {
         name = (char) (numVertices + A_IN_ASCII);
         numVertices++;
     }
-/*    
-    public Edge[] getEdges(){
-        Edge array[] = new Edge[5];
-        array = edges.toArray(array);
-        
-        edges.trimToSize();
-        
-        int length = 0;
-      //  while(edges[length] != null){
-            
-            
-      //  }
-        
-    }
-*/    
+  
     public char getName(){
         return name;
     }
@@ -48,7 +34,10 @@ public class Vertex {
     public void addEdge(Edge e){
         edges.add(e);
     }
-    
+
+    /* Initializes the clusters. The first element of each cluster is the name
+       of a vertex, i.e. A, B, C, ...
+    */
     public void initializeCluster(int numElementsInCluster){
         cluster = new char[numElementsInCluster];           
         cluster[0] = name;
@@ -59,6 +48,7 @@ public class Vertex {
         return cluster;
     }
     
+    /* This method updates which vertices are in which cluster */
     public void updateClusters(Vertex v, Vertex w, Vertex[] all){
         // Vertices in a cluster always associate with the name of the vertex (which 
         // is also in the cluster) lowest in the alphabet. The vertex with the name

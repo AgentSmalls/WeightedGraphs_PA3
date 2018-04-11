@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: Builds the weighted graphs from the matrix and provides depth search
  */
 package weighted_graphs_pa3;
 import java.util.*;
@@ -107,7 +107,6 @@ public class WeightedGraph {
         }
         return h;
     }
-<<<<<<< HEAD
     
     public MST Prim(){
         
@@ -123,18 +122,6 @@ public class WeightedGraph {
         
         return null;
     }
-    
-    public void printMatrix(){
-        for(int i = 0; i < adjacencyMatrix.length; i++){
-            for(int j = 0; j < adjacencyMatrix.length; j++){
-                System.out.print(adjacencyMatrix[i][j] + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-=======
->>>>>>> d1774150c3cdf03407779ede626ecf0d7c2846f4
     
     public Vertex[] getVertices(){
         return vertices;

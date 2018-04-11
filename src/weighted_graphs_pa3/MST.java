@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: creates the Minimum Spanning Trees from prim and kruskal algorithms
  */
 package weighted_graphs_pa3;
 
@@ -18,15 +18,9 @@ public class MST {
         edges = new Edge[vertices.length - 1];
     }
     
-    
-    
-<<<<<<< HEAD
     public MST Prim(WeightedGraph graph, int s){
         MST m = new MST(graph);
         Heap q = graph.depthSearch();
-=======
-    public MST prim(){
->>>>>>> d1774150c3cdf03407779ede626ecf0d7c2846f4
         
         Edge[] v = graph.getEdges();
         Edge[] p;
@@ -34,7 +28,7 @@ public class MST {
         //for each member of q set the priority to "infinity"
         for(Edge i : v){
             //set the priority to "infinity"
-            v[i] = ; //?????
+            //v[i] = ; //?????
         }
         //set the starting vertex 's' priority to 0
         //v[s] = null;
@@ -80,8 +74,6 @@ public class MST {
         
         return this;
     }
-<<<<<<< HEAD
-=======
     
     public void printTree(){
         for(int i = 0; i < edges.length; i++){
@@ -91,8 +83,4 @@ public class MST {
         }
         System.out.println();
     }
-    
-    
-    
->>>>>>> d1774150c3cdf03407779ede626ecf0d7c2846f4
 }

@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: sets up the weighted graphs and adjacency matrices from the csv file
  */
 package weighted_graphs_pa3;
 

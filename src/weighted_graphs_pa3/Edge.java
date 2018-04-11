@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: defines the connection between vertices and that connections weight
  */
 package weighted_graphs_pa3;
 

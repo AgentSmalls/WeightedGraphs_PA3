@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Authors: Timothy Small and James Jacobs
+ * Date: 4/10/18
+ * Overview: creates the adjacency matrix, prints the matrix and gets the length of the shortest path
+    between all pairs of vertices
  */
 package weighted_graphs_pa3;
 
